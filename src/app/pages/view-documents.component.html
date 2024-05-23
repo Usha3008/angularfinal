@@ -1,0 +1,37 @@
+<div *ngIf="loading" class="loading-overlay">
+  <div class="spinner"></div>
+  Loading...
+</div>
+
+<div class="container document-section">
+  <h2 class="document-heading text-center bg-primary text-white py-2">Customer Documents</h2>
+
+  <!-- Display Photo -->
+  <div class="document-display text-center mb-3">
+    <h3>Photo</h3>
+    <img *ngIf="photo" [src]="photo" alt="Customer Photo" class="img-thumbnail">
+    <input type="file" (change)="onFileChange($event, 'photo')" class="form-control-file mt-2">
+  </div>
+
+  <!-- Display Aadhar Card -->
+  <div class="document-display text-center mb-3">
+    <h3>Aadhar Card</h3>
+    <img *ngIf="aadhar" [src]="aadhar" alt="Aadhar Card" class="img-thumbnail">
+    <input type="file" (change)="onFileChange($event, 'aadhar')" class="form-control-file mt-2">
+  </div>
+
+  <!-- Display PAN Card -->
+  <div class="document-display text-center mb-3">
+    <h3>PAN Card</h3>
+    <img *ngIf="panCard" [src]="panCard" alt="PAN Card" class="img-thumbnail">
+    <input type="file" (change)="onFileChange($event, 'panCard')" class="form-control-file mt-2">
+  </div>
+
+  <div *ngIf="message" class="alert alert-info text-center">{{ message }}</div>
+  <div></div>
+  <!-- Update Documents Button -->
+  <div class="text-center mt-4">
+    <button class="btn btn-primary mr-2" (click)="onUpdateDocument()">Update</button>
+    <button class="btn btn-secondary" (click)="onBack()">Back</button>
+  </div>
+</div>

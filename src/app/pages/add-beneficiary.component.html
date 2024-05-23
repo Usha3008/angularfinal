@@ -1,0 +1,79 @@
+<div class="container mt-4">
+    <div class="row justify-content-center">
+      <div class="col-md-8">
+        <div class="card">
+          <div class="card-body">
+            <h3 class="card-title text-center blue-background">Add Beneficiary</h3>
+            <form (ngSubmit)="onSubmit()" #beneficiaryForm="ngForm">
+              <div class="form-group">
+                <label for="benefName">Beneficiary Name</label>
+                <input 
+                  type="text" 
+                  class="form-control" 
+                  id="benefName" 
+                  [(ngModel)]="beneficiary.benefName" 
+                  name="benefName" 
+                  placeholder="Add beneficiary name" 
+                  required 
+                  #benefName="ngModel">
+                <div *ngIf="benefName.invalid && (benefName.dirty || beneficiaryForm.submitted)" class="text-danger">
+                  Beneficiary name is required.
+                </div>
+              </div>
+              <div class="form-group">
+                <label for="benefAccount">Account Number</label>
+                <input 
+                  type="text" 
+                  class="form-control" 
+                  id="benefAccount" 
+                  [(ngModel)]="beneficiary.benefAccount" 
+                  name="benefAccount" 
+                  placeholder="Enter account number" 
+                  required 
+                  #benefAccount="ngModel">
+                <div *ngIf="benefAccount.invalid && (benefAccount.dirty || beneficiaryForm.submitted)" class="text-danger">
+                  Account number is required.
+                </div>
+              </div>
+              <div class="form-group">
+                <label for="ifsc">IFSC</label>
+                <input 
+                  type="text" 
+                  class="form-control" 
+                  id="ifsc" 
+                  [(ngModel)]="beneficiary.ifsc" 
+                  name="ifsc" 
+                  placeholder="Enter IFSC" 
+                  required 
+                  #ifsc="ngModel">
+                <div *ngIf="ifsc.invalid && (ifsc.dirty || beneficiaryForm.submitted)" class="text-danger">
+                  IFSC is required.
+                </div>
+              </div>
+              <div class="form-group">
+                <label for="benefAccType">Account Type</label>
+                <select 
+                  class="form-control" 
+                  id="benefAccType" 
+                  [(ngModel)]="beneficiary.benefAccType" 
+                  name="benefAccType" 
+                  required 
+                  #benefAccType="ngModel">
+                  <option [value]="1">Savings</option>
+                  <option [value]="2">Current</option>
+                </select>
+                <div *ngIf="benefAccType.invalid && (benefAccType.dirty || beneficiaryForm.submitted)" class="text-danger">
+                  Account type is required.
+                </div>
+              </div>
+              <div *ngIf="message" class="alert alert-info">{{ message }}</div>
+              <div class="mt-3 text-center">
+                <button type="submit" class="btn btn-primary mr-2" [disabled]="beneficiaryForm.invalid">Add Beneficiary</button>
+                <button type="button" class="btn btn-secondary" (click)="onBack()">Back</button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>

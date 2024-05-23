@@ -1,0 +1,45 @@
+<div class="container mt-4">
+  <div class="row justify-content-center">
+    <div class="col-md-8">
+      <div class="card">
+        <div class="card-body">
+          <h3 class="card-title text-center blue-background">Beneficiaries</h3>
+          <table class="table table-bordered">
+            <thead>
+              <tr>
+                <th>Beneficiary Name</th>
+                <th>Account Number</th>
+                <th>IFSC</th>
+                <th>Status</th>
+                <th>Account Type</th>
+                <th>Actions</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let beneficiary of beneficiaries">
+                <td>{{ beneficiary.benefName }}</td>
+                <td>{{ beneficiary.benefAccount }}</td>
+                <td>{{ beneficiary.ifsc }}</td>
+                <td>{{ beneficiary.isActive ? 'Active' : 'Inactive' }}</td>
+                <td>{{ getAccountType(beneficiary.benefAccType) }}</td>
+                <td>
+                  <button class="btn btn-danger" (click)="onDeleteBeneficiary(beneficiary.benefAccount)">Delete</button>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+          <div *ngIf="message" class="alert alert-info">{{ message }}</div>
+          <div *ngIf="deleteMessage" class="alert alert-warning">
+            {{ deleteMessage }}
+            <button class="btn btn-danger" (click)="confirmDelete()">Yes</button>
+            <button class="btn btn-secondary" (click)="cancelDelete()">No</button>
+          </div>
+          <div class="mt-3 text-center">
+            <button class="btn btn-primary mr-2" (click)="onAddBeneficiary()">Add Beneficiary</button>
+            <button class="btn btn-secondary" (click)="onBack()">Back</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
